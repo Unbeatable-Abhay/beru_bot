@@ -43,7 +43,9 @@ def voice_injection(user_id):
 # ── Groq sync helper ───────────────────────────────────────────────────────────
 
 def groq_complete(messages, max_tokens=500, temperature=0.8):
-    client = Groq(api_key=config.GROQ_API_KEY)
+    import httpx
+    http_client = httpx.Client()
+    client = Groq(api_key=config.GROQ_API_KEY, http_client=http_client)
     response = client.chat.completions.create(
         model="llama-3.1-8b-instant",
         messages=messages,
