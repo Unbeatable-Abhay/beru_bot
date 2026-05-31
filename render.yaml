@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: beru-bot
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python main.py
+    envVars:
+      - key: DISCORD_TOKEN
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: REPLICATE_API_TOKEN
+        sync: false
