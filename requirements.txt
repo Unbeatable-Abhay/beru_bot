@@ -1,7 +1,8 @@
 discord.py==2.3.2
-groq==0.9.0
+groq>=0.28.0
 replicate==0.25.2
 flask==3.0.3
 python-dotenv==1.0.1
 requests==2.32.3
 audioop-lts==0.2.1
+httpx>=0.27.0
