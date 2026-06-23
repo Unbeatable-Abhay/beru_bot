@@ -42,7 +42,7 @@ def voice_injection(user_id):
 
 # ── Groq sync helper ───────────────────────────────────────────────────────────
 
-def groq_complete(messages, max_tokens=500, temperature=0.8):
+def groq_complete(messages, max_tokens=500, temperature=0.5):
     import httpx
     http_client = httpx.Client()
     client = Groq(api_key=config.GROQ_API_KEY, http_client=http_client)
@@ -70,7 +70,7 @@ def gen_post(platform, topic, user_id=None):
     return groq_complete([
         {"role": "system", "content": f"You are an expert social media content creator specializing in {platform} content. {instruction} {voice} Only output the post itself, no explanations or meta-commentary."},
         {"role": "user", "content": f"Write a {platform} post about: {topic}"}
-    ], max_tokens=500, temperature=0.8)
+    ], max_tokens=500, temperature=0.5)
 
 
 def gen_hook(topic, user_id=None):
@@ -78,7 +78,7 @@ def gen_hook(topic, user_id=None):
     return groq_complete([
         {"role": "system", "content": f"You are a viral content strategist. {voice} Generate exactly 5 scroll-stopping opening lines (hooks) for the given topic. Each hook must be under 15 words. Use a different psychological trigger for each: 1) Curiosity gap, 2) Controversial statement, 3) Bold claim, 4) Relatable pain point, 5) Surprising statistic (realistic). Number them with 🔥 emoji. Output only the numbered hooks, nothing else."},
         {"role": "user", "content": f"Topic: {topic}"}
-    ], max_tokens=300, temperature=0.8)
+    ], max_tokens=300, temperature=0.5)
 
 
 def gen_script(topic, user_id=None):
@@ -95,7 +95,7 @@ def gen_script(topic, user_id=None):
             "Add [PAUSE], [EMPHASIS], or [FAST] stage directions inline where appropriate. Output only the script."
         )},
         {"role": "user", "content": f"Write a reel script about: {topic}"}
-    ], max_tokens=400, temperature=0.8)
+    ], max_tokens=400, temperature=0.5)
 
 
 def gen_trendscore(topic):
@@ -137,18 +137,22 @@ def gen_hashtags(platform, topic):
 
 def gen_caption(platform, image_description, user_id=None):
     platform_style = {
-        "instagram": "Write an Instagram photo caption. Hook in the first line (shown before 'more'). Use 2-3 emojis. Conversational, relatable tone. End with a question or CTA. Max 150 words.",
-        "linkedin": "Write a LinkedIn photo caption. Professional and insightful. Start with an observation about the image. Share a brief takeaway or story. End with a question for engagement. Max 100 words.",
-        "twitter": "Write a Twitter/X photo caption. Punchy, under 240 characters. Witty or insightful. One emoji max.",
-        "youtube": "Write a YouTube community post caption for a photo. Warm and engaging. Invite comments. Add 3 relevant hashtags. Max 100 words.",
-        "whatsapp": "Write a WhatsApp status caption. Short, casual, warm. Max 50 words. 1-2 emojis.",
+        "instagram": "Write an Instagram photo caption. Hook in the first line (shown before 'more'). Use plain text only. Conversational and relatable tone. End with a question or CTA. Do not use emojis, markdown, asterisks, or decorative symbols. Max 150 words.",
+
+        "linkedin": "Write a LinkedIn photo caption. Professional and insightful. Start with an observation about the image. Share a brief takeaway or story. End with a question for engagement. Use plain text only. Do not use emojis, markdown, asterisks, or decorative symbols. Max 100 words.",
+
+        "twitter": "Write a Twitter/X photo caption. Punchy, under 240 characters. Witty or insightful. Use plain text only. Do not use emojis, markdown, asterisks, or decorative symbols.",
+
+        "youtube": "Write a YouTube community post caption for a photo. Warm and engaging. Invite comments. Add 3 relevant hashtags. Use plain text only. Do not use emojis, markdown, asterisks, or decorative symbols. Max 100 words.",
+
+        "whatsapp": "Write a WhatsApp status caption. Short, casual, warm. Use plain text only. Do not use emojis, markdown, asterisks, or decorative symbols. Max 50 words."
     }
     style = platform_style.get(platform, platform_style["instagram"])
     voice = voice_injection(user_id) if user_id else "Use a neutral professional tone."
     return groq_complete([
         {"role": "system", "content": f"You are an expert social media caption writer. {style} {voice} Output only the caption, no extra commentary."},
         {"role": "user", "content": f"Write a {platform} caption for this photo: {image_description}"}
-    ], max_tokens=250, temperature=0.85)
+    ], max_tokens=250, temperature=0.5)
 
 
 def gen_virality(post_content, topic):

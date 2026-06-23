@@ -5,14 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Beru – AI Social Media Content Studio</title>
   
-  <!-- Google Fonts: Fraunces, Inter, JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  
-  <!-- Tabler Icons Webfont -->
+
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
-  
+
   <style>
     * {
       margin: 0;
@@ -21,211 +19,181 @@
     }
 
     :root {
-      --color-bg-dark: #0c0e14;
-      --color-surface-light: #f6f3ea;
-      --color-surface-dark: #161a2c;
-      --color-surface-cyan: #d8efec;
-      --color-surface-sand: #ecddc2;
-      --color-text-light: #f4f3ef;
-      --color-text-cyan: #0e5c56;
-      --color-text-sand: #5c4a2c;
-      --color-accent: #5fd9d0;
-      --border-radius-outer: 28px;
-      --border-radius-card: 18px;
-      --border-radius-button: 10px;
+      --primary: #5fd9d0;
+      --bg-dark: #0c0e14;
+      --bg-light: #f6f3ea;
+      --bg-surface: #161a2c;
+      --bg-cyan: #d8efec;
+      --bg-sand: #ecddc2;
+      --text-dark: #1a1a1a;
+      --text-light: #f4f3ef;
+      --text-cyan: #0e5c56;
+      --text-sand: #5c4a2c;
+      --border-radius-lg: 28px;
+      --border-radius-md: 18px;
+      --border-radius-sm: 10px;
       --border-radius-pill: 100px;
     }
 
     html {
-      background-color: var(--color-bg-dark);
-    }
-
-    html, body {
-      height: 100%;
+      background-color: var(--bg-dark);
     }
 
     body {
       font-family: 'Inter', sans-serif;
-      color: #1a1a1a;
-      background-color: var(--color-bg-dark);
+      color: var(--text-dark);
+      background-color: var(--bg-dark);
       min-height: 100vh;
+      display: flex;
     }
 
     .app-shell {
-      background: #fff;
+      display: flex;
       width: 100%;
       min-height: 100vh;
-      display: flex;
-      overflow: hidden;
-    }
-
-    @media (min-width: 1440px) {
-      .app-shell {
-        border-radius: var(--border-radius-outer);
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-        max-width: 1400px;
-        min-height: calc(100vh - 32px);
-        margin: 16px auto;
-      }
+      background: #fff;
     }
 
     /* ===== SIDEBAR ===== */
     .sidebar {
-      width: 230px;
-      background: var(--color-surface-light);
-      padding: 24px 16px;
-      overflow-y: auto;
+      width: 240px;
+      background: var(--bg-light);
+      padding: 24px 18px;
       display: flex;
       flex-direction: column;
       border-right: 1px solid rgba(0, 0, 0, 0.08);
+      overflow-y: auto;
     }
 
-    .sidebar-header {
+    .brand-section {
       display: flex;
       align-items: center;
       gap: 12px;
       margin-bottom: 32px;
     }
 
-    .sidebar-brand-mark {
-      width: 30px;
-      height: 30px;
-      background-color: var(--color-accent);
-      border-radius: 6px;
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      background-color: var(--primary);
+      border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-family: 'Fraunces', serif;
       font-weight: 600;
-      font-size: 16px;
-      color: var(--color-surface-dark);
-    }
-
-    .sidebar-wordmark {
-      font-family: 'Fraunces', serif;
-      font-weight: 600;
       font-size: 18px;
-      color: var(--color-surface-dark);
+      color: #fff;
     }
 
-    .nav-group {
-      margin-bottom: 28px;
-      flex: 0 0 auto;
-    }
-
-    .nav-group-label {
-      font-size: 11px;
-      text-transform: uppercase;
+    .brand-text {
+      font-family: 'Fraunces', serif;
+      font-size: 20px;
       font-weight: 600;
-      color: #aaa;
-      margin-bottom: 10px;
-      letter-spacing: 0.5px;
+      color: var(--text-dark);
     }
 
-    .nav-items {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
+    .nav-section {
+      margin-bottom: 28px;
+    }
+
+    .nav-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #999;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+      display: block;
     }
 
     .nav-item {
-      padding: 12px 14px;
-      border-radius: 12px;
-      cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 12px;
       font-size: 14px;
       font-weight: 500;
       color: #555;
+      cursor: pointer;
       transition: all 0.2s ease;
-      border: 1px solid transparent;
-      background-color: transparent;
+      border: none;
+      background: transparent;
       text-decoration: none;
+      margin-bottom: 6px;
+      width: 100%;
       user-select: none;
     }
 
     .nav-item:hover {
       background-color: rgba(95, 217, 208, 0.08);
-      color: #333;
+      color: var(--text-dark);
     }
 
     .nav-item.active {
-      background-color: var(--color-accent);
-      color: var(--color-surface-dark);
+      background-color: var(--primary);
+      color: #fff;
       font-weight: 600;
     }
 
     .nav-item i {
-      width: 18px;
-      height: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      font-size: 18px;
+      width: 20px;
     }
 
     .sidebar-spacer {
       flex: 1;
     }
 
-    .sidebar-quick-links {
+    .quick-links {
       background-color: rgba(0, 0, 0, 0.04);
-      border-radius: 18px;
-      padding: 14px;
-      flex: 0 0 auto;
+      border-radius: 14px;
+      padding: 12px;
     }
 
     .quick-link {
       display: flex;
       align-items: center;
       gap: 10px;
-      padding: 10px;
+      padding: 10px 12px;
       border-radius: 8px;
       text-decoration: none;
       font-size: 13px;
       font-weight: 500;
-      color: #333;
+      color: var(--text-dark);
       transition: all 0.2s ease;
+      margin-bottom: 6px;
+      width: 100%;
       border: 1px solid transparent;
+    }
+
+    .quick-link:last-child {
+      margin-bottom: 0;
     }
 
     .quick-link:hover {
       background-color: rgba(95, 217, 208, 0.12);
+      border-color: var(--primary);
     }
 
     .quick-link i {
+      font-size: 16px;
       width: 16px;
-      height: 16px;
-      flex: 0 0 auto;
     }
 
-    .quick-link-label {
-      flex: 1;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+    .external-icon {
+      margin-left: auto;
+      font-size: 12px;
+      opacity: 0.5;
     }
 
-    .quick-link-icon-external {
-      width: 14px;
-      height: 14px;
-      flex: 0 0 auto;
-      opacity: 0.6;
-    }
-
-    /* ===== MAIN CONTENT AREA ===== */
+    /* ===== MAIN CONTENT ===== */
     .main-content {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      background: #fafafa;
-      overflow: hidden;
-    }
-
-    .page-container {
       flex: 1;
       overflow-y: auto;
       padding: 32px;
+      background: #fafafa;
     }
 
     .page {
@@ -234,15 +202,67 @@
 
     .page.active {
       display: block;
+      animation: fadeIn 0.2s ease;
     }
 
-    /* ===== PAGE LAYOUTS ===== */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
 
-    /* Platform pills row */
-    .platform-row {
+    .page-title {
+      font-family: 'Fraunces', serif;
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 24px;
+      color: var(--text-dark);
+    }
+
+    /* ===== FORM ELEMENTS ===== */
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #999;
+      margin-bottom: 8px;
+      letter-spacing: 0.3px;
+    }
+
+    .form-input,
+    .form-textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #ddd;
+      border-radius: var(--border-radius-sm);
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: var(--text-dark);
+      background: var(--bg-light);
+      transition: all 0.2s ease;
+    }
+
+    .form-input:focus,
+    .form-textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(95, 217, 208, 0.1);
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 120px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .platform-select {
       display: flex;
       gap: 12px;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
       flex-wrap: wrap;
     }
 
@@ -250,7 +270,7 @@
       padding: 10px 16px;
       border-radius: var(--border-radius-pill);
       border: 1px solid #ddd;
-      background: var(--color-surface-light);
+      background: var(--bg-light);
       cursor: pointer;
       font-size: 13px;
       font-weight: 500;
@@ -262,75 +282,24 @@
     }
 
     .platform-pill:hover {
-      border-color: var(--color-accent);
+      border-color: var(--primary);
+      background-color: rgba(95, 217, 208, 0.05);
     }
 
     .platform-pill.active {
-      background-color: var(--color-accent);
+      background-color: var(--primary);
       color: #fff;
-      border-color: var(--color-accent);
+      border-color: var(--primary);
     }
 
     .platform-pill i {
       font-size: 16px;
     }
 
-    /* Input row */
-    .input-row {
-      display: flex;
-      gap: 12px;
-      margin-bottom: 24px;
-      align-items: flex-end;
-    }
-
-    .input-row[style*="column"] {
-      align-items: stretch;
-    }
-
-    .input-wrapper {
-      flex: 1;
-    }
-
-    .input-label {
-      display: block;
-      font-size: 12px;
-      font-weight: 600;
-      text-transform: uppercase;
-      color: #999;
-      margin-bottom: 8px;
-      letter-spacing: 0.3px;
-    }
-
-    input[type="text"],
-    textarea {
-      width: 100%;
-      padding: 12px 14px;
-      border: 1px solid #ddd;
-      border-radius: var(--border-radius-button);
-      font-family: 'Inter', sans-serif;
-      font-size: 14px;
-      color: #333;
-      background: var(--color-surface-light);
-      transition: all 0.2s ease;
-    }
-
-    input[type="text"]:focus,
-    textarea:focus {
-      outline: none;
-      border-color: var(--color-accent);
-      box-shadow: 0 0 0 3px rgba(95, 217, 208, 0.1);
-    }
-
-    textarea {
-      resize: vertical;
-      min-height: 100px;
-      font-family: 'Inter', sans-serif;
-    }
-
-    /* Buttons */
-    .btn {
-      padding: 12px 16px;
-      border-radius: var(--border-radius-button);
+    /* ===== BUTTONS ===== */
+    .button {
+      padding: 12px 20px;
+      border-radius: var(--border-radius-sm);
       border: none;
       font-size: 14px;
       font-weight: 600;
@@ -343,38 +312,41 @@
       white-space: nowrap;
     }
 
-    .btn-primary {
-      background-color: var(--color-accent);
-      color: #fff;
+    .button:hover {
+      transform: translateY(-2px);
     }
 
-    .btn-primary:hover {
-      background-color: #51c4b8;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(95, 217, 208, 0.3);
-    }
-
-    .btn-primary:active {
+    .button:active {
       transform: translateY(0);
     }
 
-    .btn-secondary {
-      background-color: var(--color-surface-light);
-      color: #333;
-      border: 1px solid #ddd;
-    }
-
-    .btn-secondary:hover {
-      background-color: #f0ede4;
-      border-color: #999;
-    }
-
-    .btn:disabled {
+    .button:disabled {
       opacity: 0.6;
       cursor: not-allowed;
     }
 
-    /* Bento grid */
+    .button-primary {
+      background-color: var(--primary);
+      color: #fff;
+    }
+
+    .button-primary:hover {
+      background-color: #51c4b8;
+      box-shadow: 0 4px 12px rgba(95, 217, 208, 0.3);
+    }
+
+    .button-secondary {
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+      border: 1px solid #ddd;
+    }
+
+    .button-secondary:hover {
+      background-color: #f0ede4;
+      border-color: #999;
+    }
+
+    /* ===== BENTO GRID ===== */
     .bento-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -382,49 +354,55 @@
       margin-top: 24px;
     }
 
-    .bento-card {
-      background: var(--color-surface-light);
-      border-radius: var(--border-radius-card);
+    .card {
+      background: var(--bg-light);
+      border-radius: var(--border-radius-md);
       padding: 24px;
       border: 1px solid rgba(0, 0, 0, 0.08);
+      transition: all 0.2s ease;
     }
 
-    .bento-card-dark {
-      background: var(--color-surface-dark);
-      color: var(--color-text-light);
+    .card:hover {
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    .card-dark {
+      background: var(--bg-surface);
+      color: var(--text-light);
       border-color: rgba(244, 243, 239, 0.1);
     }
 
-    .bento-card-cyan {
-      background: var(--color-surface-cyan);
-      color: var(--color-text-cyan);
+    .card-cyan {
+      background: var(--bg-cyan);
+      color: var(--text-cyan);
       border-color: rgba(14, 92, 86, 0.2);
     }
 
-    .bento-card-sand {
-      background: var(--color-surface-sand);
-      color: var(--color-text-sand);
+    .card-sand {
+      background: var(--bg-sand);
+      color: var(--text-sand);
       border-color: rgba(92, 74, 44, 0.2);
     }
 
     .card-title {
       font-family: 'Fraunces', serif;
-      font-size: 13px;
-      font-weight: 600;
+      font-size: 12px;
+      font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.4px;
-      margin-bottom: 12px;
-      opacity: 0.7;
+      margin-bottom: 14px;
+      opacity: 0.75;
+      display: block;
     }
 
     .card-content {
       font-size: 14px;
-      line-height: 1.5;
+      line-height: 1.6;
       word-wrap: break-word;
       white-space: pre-wrap;
     }
 
-    .card-content-with-button {
+    .card-with-button {
       display: flex;
       gap: 12px;
       align-items: flex-start;
@@ -432,43 +410,49 @@
 
     .card-text {
       flex: 1;
+      white-space: pre-wrap;
+      word-wrap: break-word;
     }
 
     .card-button {
       flex: 0 0 auto;
       padding: 8px 12px;
-      margin-top: 0;
       font-size: 12px;
     }
 
-    /* Hero number */
-    .hero-number {
+    /* ===== METRICS ===== */
+    .virality-hero {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .virality-number {
       font-family: 'Fraunces', serif;
-      font-size: 56px;
+      font-size: 48px;
       font-weight: 600;
-      margin: 16px 0;
       line-height: 1;
     }
 
-    .hero-chip {
+    .virality-chip {
       display: inline-block;
-      background-color: var(--color-accent);
+      background-color: var(--primary);
       color: #fff;
       padding: 6px 12px;
       border-radius: var(--border-radius-pill);
       font-size: 12px;
       font-weight: 600;
-      margin-bottom: 16px;
+      width: fit-content;
     }
 
-    .signal-rows {
+    .signal-group {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      margin-top: 16px;
+      gap: 10px;
+      margin-top: 14px;
     }
 
-    .signal-row {
+    .signal {
       display: flex;
       align-items: center;
       gap: 10px;
@@ -486,66 +470,23 @@
     }
 
     .signal-dot.cyan {
-      background-color: var(--color-accent);
+      background-color: var(--primary);
     }
 
     .signal-dot.coral {
       background-color: #f08080;
     }
 
-    /* SVG sparkline */
-    .sparkline-container {
-      width: 100%;
-      height: 60px;
-      margin: 16px 0;
-    }
-
-    .caption-muted {
-      font-size: 12px;
-      opacity: 0.7;
-      margin-bottom: 12px;
-    }
-
-    /* Loading state */
-    .loading-spinner {
-      display: inline-block;
-      width: 16px;
-      height: 16px;
-      border: 2px solid rgba(95, 217, 208, 0.2);
-      border-top-color: var(--color-accent);
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
-    .loading-message {
-      font-size: 13px;
-      color: #999;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    /* Error styling */
-    .error-message {
-      background-color: #ffe6e6;
-      color: #c33;
-      padding: 12px 14px;
-      border-radius: var(--border-radius-button);
-      font-size: 13px;
-      margin-top: 12px;
-      border: 1px solid #ffcccc;
-    }
-
-    /* Chat page */
-    .chat-container {
+    /* ===== CHAT ===== */
+    .chat-window {
       display: flex;
       flex-direction: column;
-      height: 100%;
+      height: 600px;
       max-height: 600px;
+      border-radius: var(--border-radius-md);
+      background: var(--bg-surface);
+      border: 1px solid rgba(244, 243, 239, 0.1);
+      overflow: hidden;
     }
 
     .chat-messages {
@@ -554,24 +495,35 @@
       display: flex;
       flex-direction: column;
       gap: 12px;
-      margin-bottom: 16px;
       padding: 16px;
-      background: var(--color-surface-dark);
-      border-radius: var(--border-radius-card);
-      color: var(--color-text-light);
+      color: var(--text-light);
     }
 
-    .chat-message {
+    .message {
       display: flex;
       gap: 10px;
       align-items: flex-end;
     }
 
-    .chat-message.user {
+    .message.user {
       justify-content: flex-end;
     }
 
-    .chat-message-content {
+    .message-avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background-color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      flex: 0 0 auto;
+    }
+
+    .message-bubble {
       max-width: 70%;
       padding: 12px 14px;
       border-radius: 12px;
@@ -580,30 +532,17 @@
       word-wrap: break-word;
     }
 
-    .chat-message.assistant .chat-message-content {
+    .message.assistant .message-bubble {
       background-color: rgba(95, 217, 208, 0.15);
-      color: var(--color-text-light);
+      color: var(--text-light);
     }
 
-    .chat-message.user .chat-message-content {
-      background-color: var(--color-accent);
+    .message.user .message-bubble {
+      background-color: var(--primary);
       color: #fff;
     }
 
-    .chat-avatar {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      background-color: var(--color-accent);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      font-size: 14px;
-      flex: 0 0 auto;
-    }
-
-    .chat-typing {
+    .typing {
       display: flex;
       gap: 4px;
       align-items: center;
@@ -627,109 +566,397 @@
       30% { opacity: 1; }
     }
 
-    .chat-input-row {
+    .chat-input-area {
       display: flex;
       gap: 12px;
+      padding: 12px;
+      border-top: 1px solid rgba(244, 243, 239, 0.1);
+      background: var(--bg-surface);
     }
 
-    .chat-input-row input {
+    .chat-input {
       flex: 1;
+      padding: 10px 12px;
+      border: 1px solid rgba(244, 243, 239, 0.2);
+      border-radius: 8px;
+      background: rgba(244, 243, 239, 0.05);
+      color: var(--text-light);
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
     }
 
-    /* Responsive */
+    .chat-input::placeholder {
+      color: rgba(244, 243, 239, 0.5);
+    }
+
+    .chat-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(95, 217, 208, 0.2);
+    }
+
+    /* ===== STATUS MESSAGES ===== */
+    .loading {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px;
+      color: #999;
+      font-size: 14px;
+      margin-top: 24px;
+    }
+
+    .spinner {
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(95, 217, 208, 0.2);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .error-message {
+      background-color: #ffe6e6;
+      color: #c33;
+      padding: 12px 14px;
+      border-radius: var(--border-radius-sm);
+      font-size: 13px;
+      margin-top: 14px;
+      border: 1px solid #ffcccc;
+    }
+
+    .success-message {
+      background-color: #e6f7f0;
+      color: #0e5c56;
+      padding: 12px 14px;
+      border-radius: var(--border-radius-sm);
+      font-size: 13px;
+      margin-top: 14px;
+      border: 1px solid #99dfd6;
+    }
+
+    /* ===== RESPONSIVE ===== */
     @media (max-width: 1024px) {
       .sidebar {
-        width: 70px;
-        padding: 16px 8px;
+        width: 90px;
+        padding: 16px 10px;
         align-items: center;
       }
 
-      .sidebar-wordmark,
-      .nav-item span,
-      .quick-link-label {
+      .brand-text {
+        display: none;
+      }
+
+      .nav-label {
         display: none;
       }
 
       .nav-item {
         justify-content: center;
         padding: 12px;
+        margin-bottom: 8px;
+      }
+
+      .nav-item span {
+        display: none;
+      }
+
+      .quick-link span {
+        display: none;
+      }
+
+      .quick-link {
+        justify-content: center;
+        padding: 10px;
+        margin-bottom: 8px;
+      }
+
+      .external-icon {
+        display: none;
+      }
+
+      .main-content {
+        padding: 24px;
       }
 
       .bento-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
       }
 
-      .page-container {
-        padding: 20px;
+      .page-title {
+        font-size: 24px;
       }
     }
 
     @media (max-width: 768px) {
       .app-shell {
         flex-direction: column;
-        min-height: auto;
       }
 
       .sidebar {
         width: 100%;
         flex-direction: row;
         align-items: center;
-        justify-content: space-between;
-        padding: 16px;
+        padding: 12px 16px;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
         overflow-x: auto;
+        overflow-y: hidden;
       }
 
-      .sidebar-header {
+      .brand-section {
         margin-bottom: 0;
+        flex-shrink: 0;
       }
 
-      .nav-group {
-        margin-bottom: 0;
+      .brand-text {
+        display: block;
+      }
+
+      .nav-section {
         display: flex;
-        gap: 8px;
-      }
-
-      .nav-group-label {
-        display: none;
-      }
-
-      .nav-items {
-        flex-direction: row;
         gap: 4px;
+        margin-bottom: 0;
+        flex-shrink: 0;
+      }
+
+      .nav-label {
+        display: block;
+        font-size: 10px;
+        margin-bottom: 0;
+        margin-right: 8px;
+        white-space: nowrap;
+      }
+
+      .nav-item {
+        padding: 8px 10px;
+        margin-bottom: 0;
+        font-size: 12px;
+        flex-shrink: 0;
+      }
+
+      .nav-item span {
+        display: none;
       }
 
       .sidebar-spacer {
         display: none;
       }
 
-      .sidebar-quick-links {
+      .quick-links {
         display: none;
       }
 
       .main-content {
         flex: 1;
+        padding: 16px;
       }
 
-      .page-container {
-        padding: 16px;
+      .page-title {
+        font-size: 20px;
+        margin-bottom: 16px;
+      }
+
+      .form-input,
+      .form-textarea {
+        font-size: 16px;
+      }
+
+      .platform-select {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        gap: 8px;
+        padding-bottom: 8px;
+      }
+
+      .platform-pill {
+        flex-shrink: 0;
+        font-size: 12px;
+        padding: 8px 12px;
+      }
+
+      .button {
+        width: 100%;
+        justify-content: center;
+        padding: 14px;
       }
 
       .bento-grid {
         grid-template-columns: 1fr;
+        gap: 12px;
       }
 
-      .platform-row {
-        overflow-x: auto;
-        flex-wrap: nowrap;
+      .card {
+        padding: 16px;
       }
 
-      .input-row {
-        flex-direction: column;
-        align-items: stretch;
+      .card-title {
+        font-size: 13px;
       }
 
-      .chat-message-content {
-        max-width: 90%;
+      .card-content {
+        font-size: 13px;
+      }
+
+      .virality-number {
+        font-size: 36px;
+      }
+
+      .message-bubble {
+        max-width: 85%;
+      }
+
+      .chat-window {
+        height: 320px;
+      }
+
+      .chat-messages {
+        padding: 12px;
+      }
+
+      .message-bubble {
+        font-size: 13px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .sidebar {
+        padding: 8px 12px;
+      }
+
+      .brand-section {
+        gap: 8px;
+      }
+
+      .brand-mark {
+        width: 32px;
+        height: 32px;
+        font-size: 16px;
+      }
+
+      .brand-text {
+        font-size: 16px;
+      }
+
+      .nav-item {
+        padding: 8px 6px;
+        font-size: 11px;
+      }
+
+      .nav-item i {
+        font-size: 18px;
+      }
+
+      .main-content {
+        padding: 12px;
+      }
+
+      .page-title {
+        font-size: 18px;
+        margin-bottom: 14px;
+      }
+
+      .form-group {
+        margin-bottom: 14px;
+      }
+
+      .form-label {
+        font-size: 10px;
+        margin-bottom: 6px;
+      }
+
+      .form-input,
+      .form-textarea {
+        padding: 10px 12px;
+        font-size: 16px;
+      }
+
+      .form-textarea {
+        min-height: 100px;
+      }
+
+      .button {
+        padding: 12px;
+        font-size: 13px;
+      }
+
+      .platform-pill {
+        font-size: 11px;
+        padding: 6px 10px;
+      }
+
+      .card {
+        padding: 12px;
+      }
+
+      .card-title {
+        font-size: 12px;
+      }
+
+      .card-content {
+        font-size: 12px;
+      }
+
+      .virality-number {
+        font-size: 28px;
+      }
+
+      .bento-grid {
+        gap: 10px;
+      }
+
+      .chat-window {
+        height: 280px;
+        border-radius: 12px;
+      }
+
+      .chat-messages {
+        padding: 10px;
+        gap: 8px;
+      }
+
+      .message-bubble {
+        max-width: 88%;
+        padding: 8px 10px;
+        font-size: 12px;
+      }
+
+      .message-avatar {
+        width: 26px;
+        height: 26px;
+        font-size: 11px;
+      }
+
+      .chat-input-area {
+        padding: 8px;
+        gap: 6px;
+      }
+
+      .chat-input {
+        font-size: 13px;
+        padding: 8px 10px;
+      }
+
+      .loading {
+        padding: 12px;
+        font-size: 12px;
+      }
+
+      .spinner {
+        width: 16px;
+        height: 16px;
+      }
+
+      .error-message,
+      .success-message {
+        font-size: 12px;
+        padding: 10px;
       }
     }
 
@@ -741,12 +968,11 @@
       }
     }
 
-    /* Keyboard focus */
     button:focus-visible,
     input:focus-visible,
     textarea:focus-visible,
     a:focus-visible {
-      outline: 2px solid var(--color-accent);
+      outline: 2px solid var(--primary);
       outline-offset: 2px;
     }
   </style>
@@ -755,514 +981,498 @@
   <div class="app-shell">
     <!-- SIDEBAR -->
     <aside class="sidebar">
-      <div class="sidebar-header">
-        <div class="sidebar-brand-mark">B</div>
-        <div class="sidebar-wordmark">Beru</div>
+      <div class="brand-section">
+        <div class="brand-mark">B</div>
+        <div class="brand-text">Beru</div>
       </div>
 
-      <!-- Create group -->
-      <div class="nav-group">
-        <div class="nav-group-label">Create</div>
-        <div class="nav-items">
-          <button class="nav-item active" data-page="all-in-one" aria-label="All-in-one">
-            <i class="ti ti-bolt"></i>
-            <span>All-in-one</span>
-          </button>
-          <button class="nav-item" data-page="write-post" aria-label="Write post">
-            <i class="ti ti-pencil"></i>
-            <span>Write post</span>
-          </button>
-          <button class="nav-item" data-page="hook-generator" aria-label="Hook generator">
-            <i class="ti ti-fish-hook"></i>
-            <span>Hook generator</span>
-          </button>
-          <button class="nav-item" data-page="script-writer" aria-label="Script writer">
-            <i class="ti ti-movie"></i>
-            <span>Script writer</span>
-          </button>
-          <button class="nav-item" data-page="caption" aria-label="Caption">
-            <i class="ti ti-camera"></i>
-            <span>Caption</span>
-          </button>
-        </div>
+      <div class="nav-section">
+        <span class="nav-label">Create</span>
+        <button class="nav-item active" data-page="all-in-one" aria-label="All-in-one">
+          <i class="ti ti-bolt"></i>
+          <span>All-in-one</span>
+        </button>
+        <button class="nav-item" data-page="write-post" aria-label="Write post">
+          <i class="ti ti-pencil"></i>
+          <span>Write post</span>
+        </button>
+        <button class="nav-item" data-page="hook-generator" aria-label="Hook generator">
+          <i class="ti ti-fish-hook"></i>
+          <span>Hook</span>
+        </button>
+        <button class="nav-item" data-page="script-writer" aria-label="Script writer">
+          <i class="ti ti-movie"></i>
+          <span>Script</span>
+        </button>
+        <button class="nav-item" data-page="caption" aria-label="Caption">
+          <i class="ti ti-camera"></i>
+          <span>Caption</span>
+        </button>
       </div>
 
-      <!-- Analyse group -->
-      <div class="nav-group">
-        <div class="nav-group-label">Analyse</div>
-        <div class="nav-items">
-          <button class="nav-item" data-page="trend-score" aria-label="Trend score">
-            <i class="ti ti-trending-up"></i>
-            <span>Trend score</span>
-          </button>
-          <button class="nav-item" data-page="hashtags" aria-label="Hashtags">
-            <i class="ti ti-hash"></i>
-            <span>Hashtags</span>
-          </button>
-        </div>
+      <div class="nav-section">
+        <span class="nav-label">Analyse</span>
+        <button class="nav-item" data-page="trend-score" aria-label="Trend score">
+          <i class="ti ti-trending-up"></i>
+          <span>Trend</span>
+        </button>
+        <button class="nav-item" data-page="hashtags" aria-label="Hashtags">
+          <i class="ti ti-hash"></i>
+          <span>Tags</span>
+        </button>
       </div>
 
-      <!-- Personalise group -->
-      <div class="nav-group">
-        <div class="nav-group-label">Personalise</div>
-        <div class="nav-items">
-          <button class="nav-item" data-page="brand-voice" aria-label="Brand voice">
-            <i class="ti ti-microphone"></i>
-            <span>Brand voice</span>
-          </button>
-          <button class="nav-item" data-page="chat" aria-label="Chat">
-            <i class="ti ti-message-chatbot"></i>
-            <span>Chat</span>
-          </button>
-        </div>
+      <div class="nav-section">
+        <span class="nav-label">Personalise</span>
+        <button class="nav-item" data-page="brand-voice" aria-label="Brand voice">
+          <i class="ti ti-microphone"></i>
+          <span>Voice</span>
+        </button>
+        <button class="nav-item" data-page="chat" aria-label="Chat">
+          <i class="ti ti-message-chatbot"></i>
+          <span>Chat</span>
+        </button>
       </div>
 
       <div class="sidebar-spacer"></div>
 
-      <!-- Quick links -->
-      <div class="sidebar-quick-links">
+      <div class="quick-links">
         <a class="quick-link" href="https://github.com/Unbeatable-Abhay/beru_bot" target="_blank" rel="noopener noreferrer" aria-label="View source on GitHub">
           <i class="ti ti-brand-github"></i>
-          <span class="quick-link-label">View source</span>
-          <i class="ti ti-external-link quick-link-icon-external"></i>
+          <span>Source</span>
+          <i class="ti ti-external-link external-icon"></i>
         </a>
-        <a class="quick-link" href="http://www.linkedin.com/in/unbeatableabhay4206" target="_blank" rel="noopener noreferrer" aria-label="Connect on LinkedIn">
-          <i class="ti ti-brand-linkedin"></i>
-          <span class="quick-link-label">LinkedIn</span>
-          <i class="ti ti-external-link quick-link-icon-external"></i>
+        <a class="quick-link" href="http://www.linkedin.com/in/unbeatableabhay4206" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Link">
+          <i class="ti ti-world"></i>
+          <span>LinkedIn</span>
+          <i class="ti ti-external-link external-icon"></i>
         </a>
-        <a class="quick-link" href="https://discord.com/oauth2/authorize?client_id=1504535699263848520&permissions=137439079488&integration_type=0&scope=bot" target="_blank" rel="noopener noreferrer" aria-label="Add to server">
+        <a class="quick-link" href="https://discord.com/oauth2/authorize?client_id=1504535699263848520&permissions=137439079488&integration_type=0&scope=bot" target="_blank" rel="noopener noreferrer" aria-label="Add to Add to server">
           <i class="ti ti-brand-discord"></i>
-          <span class="quick-link-label">Add to server</span>
-          <i class="ti ti-external-link quick-link-icon-external"></i>
+          <span>Add to server</span>
+          <i class="ti ti-external-link external-icon"></i>
         </a>
       </div>
     </aside>
 
     <!-- MAIN CONTENT -->
     <main class="main-content">
-      <div class="page-container">
+      <!-- PAGE: All-in-one -->
+      <div class="page active" id="all-in-one">
+        <h1 class="page-title">All-in-one Suite</h1>
 
-        <!-- PAGE: All-in-one -->
-        <div class="page active" id="all-in-one">
-          <div class="platform-row" id="aio-platforms">
-            <button class="platform-pill active" data-platform="youtube">
-              <i class="ti ti-brand-youtube"></i> YouTube
-            </button>
-            <button class="platform-pill" data-platform="instagram">
-              <i class="ti ti-brand-instagram"></i> Instagram
-            </button>
-            <button class="platform-pill" data-platform="linkedin">
-              <i class="ti ti-brand-linkedin"></i> LinkedIn
-            </button>
-            <button class="platform-pill" data-platform="twitter">
-              <i class="ti ti-brand-x"></i> Twitter
-            </button>
-            <button class="platform-pill" data-platform="whatsapp">
-              <i class="ti ti-brand-whatsapp"></i> WhatsApp
-            </button>
-          </div>
-
-          <div class="input-row">
-            <div class="input-wrapper">
-              <label class="input-label">Topic</label>
-              <input type="text" id="aio-topic" placeholder="Enter your content topic...">
-            </div>
-            <button class="btn btn-primary" id="aio-generate">
-              <i class="ti ti-bolt"></i> Generate suite
-            </button>
-          </div>
-
-          <div id="aio-results" style="display: none;">
-            <div class="bento-grid">
-              <!-- Virality breakdown hero -->
-              <div class="bento-card bento-card-cyan" style="grid-column: span 1;">
-                <div class="card-title">Virality Breakdown</div>
-                <div id="aio-virality-number" class="hero-number">—</div>
-                <div id="aio-virality-chip" class="hero-chip" style="display: none;">Rising</div>
-                <div id="aio-signals" class="signal-rows"></div>
-              </div>
-
-              <!-- Trend momentum (decorative sparkline) -->
-              <div class="bento-card bento-card-cyan" style="grid-column: span 1;">
-                <div class="caption-muted">Visual reference</div>
-                <svg class="sparkline-container" viewBox="0 0 200 60" preserveAspectRatio="xMidYMid meet">
-                  <polyline points="10,45 30,35 50,40 70,25 90,30 110,15 130,20 150,10 170,22 190,8" fill="none" stroke="#5fd9d0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-                <div class="card-title" style="margin-top: 12px;">Trend Momentum</div>
-              </div>
-
-              <!-- Trend score -->
-              <div class="bento-card" style="grid-column: span 1;">
-                <div class="card-title">Trend Score</div>
-                <div id="aio-trendscore" class="card-content">—</div>
-              </div>
-
-              <!-- Post (full width) -->
-              <div class="bento-card bento-card-dark" style="grid-column: span 3;">
-                <div class="card-title">Generated Post</div>
-                <div class="card-content-with-button">
-                  <div id="aio-post" class="card-text">—</div>
-                  <button class="btn btn-secondary card-button" id="aio-copy-post" style="display: none;">
-                    <i class="ti ti-copy"></i>
-                  </button>
-                </div>
-              </div>
-
-              <!-- Hashtags -->
-              <div class="bento-card" style="grid-column: span 3;">
-                <div class="card-title">Hashtags</div>
-                <div class="card-content-with-button">
-                  <div id="aio-hashtags" class="card-text" style="font-family: 'JetBrains Mono', monospace; font-size: 13px;">—</div>
-                  <button class="btn btn-secondary card-button" id="aio-copy-hashtags" style="display: none;">
-                    <i class="ti ti-copy"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div id="aio-error" class="error-message" style="display: none;"></div>
-          </div>
-
-          <div id="aio-loading" style="display: none; margin-top: 24px;">
-            <div class="loading-message">
-              <div class="loading-spinner"></div>
-              <span>Analysing trend potential, drafting post, grouping hashtags...</span>
-            </div>
-          </div>
+        <div class="platform-select" id="aio-platforms">
+          <button class="platform-pill active" data-platform="youtube">
+            <i class="ti ti-brand-youtube"></i> YouTube
+          </button>
+          <button class="platform-pill" data-platform="instagram">
+            <i class="ti ti-brand-instagram"></i> Instagram
+          </button>
+          <button class="platform-pill" data-platform="linkedin">
+            <i class="ti ti-brand-linkedin"></i> LinkedIn
+          </button>
+          <button class="platform-pill" data-platform="twitter">
+            <i class="ti ti-brand-twitter"></i> Twitter
+          </button>
+          <button class="platform-pill" data-platform="whatsapp">
+            <i class="ti ti-brand-whatsapp"></i> WhatsApp
+          </button>
         </div>
 
-        <!-- PAGE: Write post -->
-        <div class="page" id="write-post">
-          <div class="platform-row" id="wp-platforms">
-            <button class="platform-pill active" data-platform="youtube">
-              <i class="ti ti-brand-youtube"></i> YouTube
-            </button>
-            <button class="platform-pill" data-platform="instagram">
-              <i class="ti ti-brand-instagram"></i> Instagram
-            </button>
-            <button class="platform-pill" data-platform="linkedin">
-              <i class="ti ti-brand-linkedin"></i> LinkedIn
-            </button>
-            <button class="platform-pill" data-platform="twitter">
-              <i class="ti ti-brand-x"></i> Twitter
-            </button>
-            <button class="platform-pill" data-platform="whatsapp">
-              <i class="ti ti-brand-whatsapp"></i> WhatsApp
-            </button>
-          </div>
+        <div class="form-group">
+          <label class="form-label">Topic</label>
+          <input type="text" id="aio-topic" class="form-input" placeholder="Enter your content topic...">
+          <button class="button button-primary" id="aio-generate" style="margin-top: 12px; width: auto;">
+            <i class="ti ti-bolt"></i> Generate suite
+          </button>
+        </div>
 
-          <div class="input-row">
-            <div class="input-wrapper">
-              <label class="input-label">Topic</label>
-              <input type="text" id="wp-topic" placeholder="Enter your content topic...">
-            </div>
-            <button class="btn btn-primary" id="wp-generate">
-              <i class="ti ti-pencil"></i> Generate post
-            </button>
-          </div>
-
-          <div id="wp-results" style="display: none;">
-            <div class="bento-grid">
-              <div class="bento-card bento-card-dark" style="grid-column: span 3;">
-                <div class="card-title">Generated Post</div>
-                <div class="card-content-with-button">
-                  <div id="wp-post" class="card-text">—</div>
-                  <button class="btn btn-secondary card-button" id="wp-copy-post" style="display: none;">
-                    <i class="ti ti-copy"></i>
-                  </button>
-                </div>
+        <div id="aio-results" style="display: none;">
+          <div class="bento-grid">
+            <div class="card card-cyan">
+              <span class="card-title">Virality Breakdown</span>
+              <div class="virality-hero">
+                <div id="aio-virality-number" class="virality-number">—</div>
+                <div id="aio-signals" class="signal-group"></div>
               </div>
             </div>
-            <div id="wp-error" class="error-message" style="display: none;"></div>
-          </div>
 
-          <div id="wp-loading" style="display: none; margin-top: 24px;">
-            <div class="loading-message">
-              <div class="loading-spinner"></div>
-              <span>Generating post...</span>
+            <div class="card card-cyan">
+              <span class="card-title">Trend Momentum</span>
+              <svg style="width: 100%; height: 120px; margin-top: 12px;" viewBox="0 0 200 60" preserveAspectRatio="xMidYMid meet">
+                <polyline points="10,45 30,35 50,40 70,25 90,30 110,15 130,20 150,10 170,22 190,8" fill="none" stroke="#5fd9d0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
             </div>
-          </div>
-        </div>
 
-        <!-- PAGE: Hook generator -->
-        <div class="page" id="hook-generator">
-          <div class="input-row">
-            <div class="input-wrapper">
-              <label class="input-label">Topic</label>
-              <input type="text" id="hg-topic" placeholder="Enter your content topic...">
+            <div class="card">
+              <span class="card-title">Trend Score</span>
+              <div id="aio-trendscore" class="card-content">—</div>
             </div>
-            <button class="btn btn-primary" id="hg-generate">
-              <i class="ti ti-fish-hook"></i> Generate hooks
-            </button>
-          </div>
 
-          <div id="hg-results" style="display: none;">
-            <div class="bento-grid">
-              <div class="bento-card bento-card-dark" style="grid-column: span 3;">
-                <div class="card-title">Generated Hooks</div>
-                <div class="card-content-with-button">
-                  <div id="hg-hooks" class="card-text">—</div>
-                  <button class="btn btn-secondary card-button" id="hg-copy-hooks" style="display: none;">
-                    <i class="ti ti-copy"></i>
-                  </button>
-                </div>
+            <div class="card card-dark" style="grid-column: span 3;">
+              <span class="card-title">Generated Post</span>
+              <div class="card-with-button">
+                <div id="aio-post" class="card-text">—</div>
+                <button class="button button-secondary card-button" id="aio-copy-post" style="display: none;">
+                  <i class="ti ti-copy"></i>
+                </button>
               </div>
             </div>
-            <div id="hg-error" class="error-message" style="display: none;"></div>
-          </div>
 
-          <div id="hg-loading" style="display: none; margin-top: 24px;">
-            <div class="loading-message">
-              <div class="loading-spinner"></div>
-              <span>Generating hooks...</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- PAGE: Script writer -->
-        <div class="page" id="script-writer">
-          <div class="input-row">
-            <div class="input-wrapper">
-              <label class="input-label">Topic</label>
-              <input type="text" id="sw-topic" placeholder="Enter your content topic...">
-            </div>
-            <button class="btn btn-primary" id="sw-generate">
-              <i class="ti ti-movie"></i> Generate script
-            </button>
-          </div>
-
-          <div id="sw-results" style="display: none;">
-            <div class="bento-grid">
-              <div class="bento-card bento-card-dark" style="grid-column: span 3;">
-                <div class="card-title">Generated Script</div>
-                <div class="card-content-with-button">
-                  <div id="sw-script" class="card-text">—</div>
-                  <button class="btn btn-secondary card-button" id="sw-copy-script" style="display: none;">
-                    <i class="ti ti-copy"></i>
-                  </button>
-                </div>
+            <div class="card" style="grid-column: span 3;">
+              <span class="card-title">Hashtags</span>
+              <div class="card-with-button">
+                <div id="aio-hashtags" class="card-text" style="font-family: 'JetBrains Mono', monospace; font-size: 13px;">—</div>
+                <button class="button button-secondary card-button" id="aio-copy-hashtags" style="display: none;">
+                  <i class="ti ti-copy"></i>
+                </button>
               </div>
             </div>
-            <div id="sw-error" class="error-message" style="display: none;"></div>
           </div>
-
-          <div id="sw-loading" style="display: none; margin-top: 24px;">
-            <div class="loading-message">
-              <div class="loading-spinner"></div>
-              <span>Generating script...</span>
-            </div>
-          </div>
+          <div id="aio-error" class="error-message" style="display: none;"></div>
         </div>
 
-        <!-- PAGE: Caption -->
-        <div class="page" id="caption">
-          <div class="platform-row" id="cap-platforms">
-            <button class="platform-pill active" data-platform="youtube">
-              <i class="ti ti-brand-youtube"></i> YouTube
-            </button>
-            <button class="platform-pill" data-platform="instagram">
-              <i class="ti ti-brand-instagram"></i> Instagram
-            </button>
-            <button class="platform-pill" data-platform="linkedin">
-              <i class="ti ti-brand-linkedin"></i> LinkedIn
-            </button>
-            <button class="platform-pill" data-platform="twitter">
-              <i class="ti ti-brand-x"></i> Twitter
-            </button>
-            <button class="platform-pill" data-platform="whatsapp">
-              <i class="ti ti-brand-whatsapp"></i> WhatsApp
-            </button>
+        <div id="aio-loading" style="display: none;">
+          <div class="loading">
+            <div class="spinner"></div>
+            <span>Generating suite...</span>
           </div>
+        </div>
+      </div>
 
-          <div class="input-row" style="flex-direction: column;">
-            <div class="input-wrapper">
-              <label class="input-label">Describe your photo or video</label>
-              <textarea id="cap-description" placeholder="Describe what's in your image or video..."></textarea>
-            </div>
-            <button class="btn btn-primary" id="cap-generate">
-              <i class="ti ti-camera"></i> Generate caption
-            </button>
-          </div>
+      <!-- PAGE: Write post -->
+      <div class="page" id="write-post">
+        <h1 class="page-title">Write Post</h1>
 
-          <div id="cap-results" style="display: none;">
-            <div class="bento-grid">
-              <div class="bento-card bento-card-dark" style="grid-column: span 3;">
-                <div class="card-title">Generated Caption</div>
-                <div class="card-content-with-button">
-                  <div id="cap-caption" class="card-text">—</div>
-                  <button class="btn btn-secondary card-button" id="cap-copy-caption" style="display: none;">
-                    <i class="ti ti-copy"></i>
-                  </button>
-                </div>
+        <div class="platform-select" id="wp-platforms">
+          <button class="platform-pill active" data-platform="youtube">
+            <i class="ti ti-brand-youtube"></i> YouTube
+          </button>
+          <button class="platform-pill" data-platform="instagram">
+            <i class="ti ti-brand-instagram"></i> Instagram
+          </button>
+          <button class="platform-pill" data-platform="linkedin">
+            <i class="ti ti-brand-linkedin"></i> LinkedIn
+          </button>
+          <button class="platform-pill" data-platform="x">
+            <i class="ti ti-brand-x"></i> X
+          </button>
+          <button class="platform-pill" data-platform="whatsapp">
+            <i class="ti ti-brand-whatsapp"></i> WhatsApp
+          </button>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Topic</label>
+          <input type="text" id="wp-topic" class="form-input" placeholder="Enter your content topic...">
+          <button class="button button-primary" id="wp-generate" style="margin-top: 12px; width: auto;">
+            <i class="ti ti-pencil"></i> Generate post
+          </button>
+        </div>
+
+        <div id="wp-results" style="display: none;">
+          <div class="bento-grid">
+            <div class="card card-dark" style="grid-column: span 3;">
+              <span class="card-title">Generated Post</span>
+              <div class="card-with-button">
+                <div id="wp-post" class="card-text">—</div>
+                <button class="button button-secondary card-button" id="wp-copy-post" style="display: none;">
+                  <i class="ti ti-copy"></i>
+                </button>
               </div>
             </div>
-            <div id="cap-error" class="error-message" style="display: none;"></div>
           </div>
-
-          <div id="cap-loading" style="display: none; margin-top: 24px;">
-            <div class="loading-message">
-              <div class="loading-spinner"></div>
-              <span>Generating caption...</span>
-            </div>
-          </div>
+          <div id="wp-error" class="error-message" style="display: none;"></div>
         </div>
 
-        <!-- PAGE: Trend score -->
-        <div class="page" id="trend-score">
-          <div class="input-row">
-            <div class="input-wrapper">
-              <label class="input-label">Topic</label>
-              <input type="text" id="ts-topic" placeholder="Enter your content topic...">
-            </div>
-            <button class="btn btn-primary" id="ts-generate">
-              <i class="ti ti-trending-up"></i> Analyse trend
-            </button>
+        <div id="wp-loading" style="display: none;">
+          <div class="loading">
+            <div class="spinner"></div>
+            <span>Generating post...</span>
           </div>
+        </div>
+      </div>
 
-          <div id="ts-results" style="display: none;">
-            <div class="bento-grid">
-              <div class="bento-card" style="grid-column: span 3;">
-                <div class="card-title">Trend Analysis</div>
-                <div id="ts-result" class="card-content">—</div>
+      <!-- PAGE: Hook generator -->
+      <div class="page" id="hook-generator">
+        <h1 class="page-title">Hook Generator</h1>
+
+        <div class="form-group">
+          <label class="form-label">Topic</label>
+          <input type="text" id="hg-topic" class="form-input" placeholder="Enter your content topic...">
+          <button class="button button-primary" id="hg-generate" style="margin-top: 12px; width: auto;">
+            <i class="ti ti-fish-hook"></i> Generate hooks
+          </button>
+        </div>
+
+        <div id="hg-results" style="display: none;">
+          <div class="bento-grid">
+            <div class="card card-dark" style="grid-column: span 3;">
+              <span class="card-title">Generated Hooks</span>
+              <div class="card-with-button">
+                <div id="hg-hooks" class="card-text">—</div>
+                <button class="button button-secondary card-button" id="hg-copy-hooks" style="display: none;">
+                  <i class="ti ti-copy"></i>
+                </button>
               </div>
             </div>
-            <div id="ts-error" class="error-message" style="display: none;"></div>
           </div>
-
-          <div id="ts-loading" style="display: none; margin-top: 24px;">
-            <div class="loading-message">
-              <div class="loading-spinner"></div>
-              <span>Analysing trend...</span>
-            </div>
-          </div>
+          <div id="hg-error" class="error-message" style="display: none;"></div>
         </div>
 
-        <!-- PAGE: Hashtags -->
-        <div class="page" id="hashtags">
-          <div class="platform-row" id="ht-platforms">
-            <button class="platform-pill active" data-platform="youtube">
-              <i class="ti ti-brand-youtube"></i> YouTube
-            </button>
-            <button class="platform-pill" data-platform="instagram">
-              <i class="ti ti-brand-instagram"></i> Instagram
-            </button>
-            <button class="platform-pill" data-platform="linkedin">
-              <i class="ti ti-brand-linkedin"></i> LinkedIn
-            </button>
-            <button class="platform-pill" data-platform="twitter">
-              <i class="ti ti-brand-x"></i> Twitter
-            </button>
-            <button class="platform-pill" data-platform="whatsapp">
-              <i class="ti ti-brand-whatsapp"></i> WhatsApp
-            </button>
+        <div id="hg-loading" style="display: none;">
+          <div class="loading">
+            <div class="spinner"></div>
+            <span>Generating hooks...</span>
           </div>
+        </div>
+      </div>
 
-          <div class="input-row">
-            <div class="input-wrapper">
-              <label class="input-label">Topic</label>
-              <input type="text" id="ht-topic" placeholder="Enter your content topic...">
-            </div>
-            <button class="btn btn-primary" id="ht-generate">
-              <i class="ti ti-hash"></i> Find hashtags
-            </button>
-          </div>
+      <!-- PAGE: Script writer -->
+      <div class="page" id="script-writer">
+        <h1 class="page-title">Script Writer</h1>
 
-          <div id="ht-results" style="display: none;">
-            <div class="bento-grid">
-              <div class="bento-card" style="grid-column: span 3;">
-                <div class="card-title">Hashtags</div>
-                <div class="card-content-with-button">
-                  <div id="ht-hashtags" class="card-text" style="font-family: 'JetBrains Mono', monospace; font-size: 13px;">—</div>
-                  <button class="btn btn-secondary card-button" id="ht-copy-hashtags" style="display: none;">
-                    <i class="ti ti-copy"></i>
-                  </button>
-                </div>
+        <div class="form-group">
+          <label class="form-label">Topic</label>
+          <input type="text" id="sw-topic" class="form-input" placeholder="Enter your content topic...">
+          <button class="button button-primary" id="sw-generate" style="margin-top: 12px; width: auto;">
+            <i class="ti ti-movie"></i> Generate script
+          </button>
+        </div>
+
+        <div id="sw-results" style="display: none;">
+          <div class="bento-grid">
+            <div class="card card-dark" style="grid-column: span 3;">
+              <span class="card-title">Generated Script</span>
+              <div class="card-with-button">
+                <div id="sw-script" class="card-text">—</div>
+                <button class="button button-secondary card-button" id="sw-copy-script" style="display: none;">
+                  <i class="ti ti-copy"></i>
+                </button>
               </div>
             </div>
-            <div id="ht-error" class="error-message" style="display: none;"></div>
           </div>
-
-          <div id="ht-loading" style="display: none; margin-top: 24px;">
-            <div class="loading-message">
-              <div class="loading-spinner"></div>
-              <span>Finding hashtags...</span>
-            </div>
-          </div>
+          <div id="sw-error" class="error-message" style="display: none;"></div>
         </div>
 
-        <!-- PAGE: Brand voice -->
-        <div class="page" id="brand-voice">
-          <!-- Save voice section -->
-          <h2 style="font-family: 'Fraunces', serif; font-size: 20px; font-weight: 600; margin-bottom: 20px;">Save your voice</h2>
-          <div class="input-row" style="flex-direction: column;">
-            <div class="input-wrapper">
-              <label class="input-label">Discord User ID</label>
-              <input type="text" id="bv-user-id-save" placeholder="Your Discord user ID...">
-            </div>
-            <div class="input-wrapper">
-              <label class="input-label">Voice Description</label>
-              <textarea id="bv-description" placeholder="Describe your brand voice, tone, and style..."></textarea>
-            </div>
-            <button class="btn btn-primary" id="bv-save" style="align-self: flex-start;">
-              <i class="ti ti-microphone"></i> Save voice
-            </button>
+        <div id="sw-loading" style="display: none;">
+          <div class="loading">
+            <div class="spinner"></div>
+            <span>Generating script...</span>
           </div>
-          <div id="bv-save-results" style="display: none;">
-            <div id="bv-save-message" class="error-message" style="display: none; background-color: #e6f7f0; color: #0e5c56; border-color: #99dfd6;"></div>
-          </div>
+        </div>
+      </div>
 
-          <hr style="margin: 40px 0; border: none; border-top: 1px solid #ddd;">
+      <!-- PAGE: Caption -->
+      <div class="page" id="caption">
+        <h1 class="page-title">Caption Generator</h1>
 
-          <!-- Load voice section -->
-          <h2 style="font-family: 'Fraunces', serif; font-size: 20px; font-weight: 600; margin-bottom: 20px;">View your voice</h2>
-          <div class="input-row" style="flex-direction: column;">
-            <div class="input-wrapper">
-              <label class="input-label">Discord User ID</label>
-              <input type="text" id="bv-user-id-load" placeholder="Your Discord user ID...">
-            </div>
-            <button class="btn btn-primary" id="bv-load" style="align-self: flex-start;">
-              <i class="ti ti-microphone"></i> Load voice
-            </button>
-          </div>
+        <div class="platform-select" id="cap-platforms">
+          <button class="platform-pill active" data-platform="youtube">
+            <i class="ti ti-brand-youtube"></i> YouTube
+          </button>
+          <button class="platform-pill" data-platform="instagram">
+            <i class="ti ti-brand-instagram"></i> Instagram
+          </button>
+          <button class="platform-pill" data-platform="linkedin">
+            <i class="ti ti-brand-linkedin"></i> LinkedIn
+          </button>
+          <button class="platform-pill" data-platform="x">
+            <i class="ti ti-brand-x"></i> X
+          </button>
+          <button class="platform-pill" data-platform="whatsapp">
+            <i class="ti ti-brand-whatsapp"></i> WhatsApp
+          </button>
+        </div>
 
-          <div id="bv-load-results" style="display: none;">
-            <div class="bento-grid" style="margin-top: 24px;">
-              <div class="bento-card" style="grid-column: span 3;">
-                <div class="card-title">Your Voice</div>
-                <div id="bv-voice" class="card-content">—</div>
+        <div class="form-group">
+          <label class="form-label">Describe your photo or video</label>
+          <textarea id="cap-description" class="form-textarea" placeholder="Describe what's in your image or video..."></textarea>
+          <button class="button button-primary" id="cap-generate" style="margin-top: 12px; width: auto;">
+            <i class="ti ti-camera"></i> Generate caption
+          </button>
+        </div>
+
+        <div id="cap-results" style="display: none;">
+          <div class="bento-grid">
+            <div class="card card-dark" style="grid-column: span 3;">
+              <span class="card-title">Generated Caption</span>
+              <div class="card-with-button">
+                <div id="cap-caption" class="card-text">—</div>
+                <button class="button button-secondary card-button" id="cap-copy-caption" style="display: none;">
+                  <i class="ti ti-copy"></i>
+                </button>
               </div>
             </div>
-            <div id="bv-load-error" class="error-message" style="display: none;"></div>
           </div>
-
-          <div id="bv-loading" style="display: none; margin-top: 24px;">
-            <div class="loading-message">
-              <div class="loading-spinner"></div>
-              <span>Loading voice...</span>
-            </div>
-          </div>
+          <div id="cap-error" class="error-message" style="display: none;"></div>
         </div>
 
-        <!-- PAGE: Chat -->
-        <div class="page" id="chat">
-          <div class="chat-container">
-            <div class="chat-messages" id="chat-messages"></div>
-            <div class="chat-input-row">
-              <input type="text" id="chat-input" placeholder="Type your message...">
-              <button class="btn btn-primary" id="chat-send">
-                <i class="ti ti-send"></i> Send
-              </button>
-            </div>
+        <div id="cap-loading" style="display: none;">
+          <div class="loading">
+            <div class="spinner"></div>
+            <span>Generating caption...</span>
           </div>
         </div>
+      </div>
 
+      <!-- PAGE: Trend score -->
+      <div class="page" id="trend-score">
+        <h1 class="page-title">Trend Score</h1>
+
+        <div class="form-group">
+          <label class="form-label">Topic</label>
+          <input type="text" id="ts-topic" class="form-input" placeholder="Enter your content topic...">
+          <button class="button button-primary" id="ts-generate" style="margin-top: 12px; width: auto;">
+            <i class="ti ti-trending-up"></i> Analyse trend
+          </button>
+        </div>
+
+        <div id="ts-results" style="display: none;">
+          <div class="bento-grid">
+            <div class="card" style="grid-column: span 3;">
+              <span class="card-title">Trend Analysis</span>
+              <div id="ts-result" class="card-content">—</div>
+            </div>
+          </div>
+          <div id="ts-error" class="error-message" style="display: none;"></div>
+        </div>
+
+        <div id="ts-loading" style="display: none;">
+          <div class="loading">
+            <div class="spinner"></div>
+            <span>Analysing trend...</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAGE: Hashtags -->
+      <div class="page" id="hashtags">
+        <h1 class="page-title">Hashtags</h1>
+
+        <div class="platform-select" id="ht-platforms">
+          <button class="platform-pill active" data-platform="youtube">
+            <i class="ti ti-brand-youtube"></i> YouTube
+          </button>
+          <button class="platform-pill" data-platform="instagram">
+            <i class="ti ti-brand-instagram"></i> Instagram
+          </button>
+          <button class="platform-pill" data-platform="linkedin">
+            <i class="ti ti-brand-linkedin"></i> LinkedIn
+          </button>
+          <button class="platform-pill" data-platform="x">
+            <i class="ti ti-brand-x"></i> X
+          </button>
+          <button class="platform-pill" data-platform="whatsapp">
+            <i class="ti ti-brand-whatsapp"></i> WhatsApp
+          </button>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Topic</label>
+          <input type="text" id="ht-topic" class="form-input" placeholder="Enter your content topic...">
+          <button class="button button-primary" id="ht-generate" style="margin-top: 12px; width: auto;">
+            <i class="ti ti-hash"></i> Find hashtags
+          </button>
+        </div>
+
+        <div id="ht-results" style="display: none;">
+          <div class="bento-grid">
+            <div class="card" style="grid-column: span 3;">
+              <span class="card-title">Hashtags</span>
+              <div class="card-with-button">
+                <div id="ht-hashtags" class="card-text" style="font-family: 'JetBrains Mono', monospace; font-size: 13px;">—</div>
+                <button class="button button-secondary card-button" id="ht-copy-hashtags" style="display: none;">
+                  <i class="ti ti-copy"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div id="ht-error" class="error-message" style="display: none;"></div>
+        </div>
+
+        <div id="ht-loading" style="display: none;">
+          <div class="loading">
+            <div class="spinner"></div>
+            <span>Finding hashtags...</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAGE: Brand voice -->
+      <div class="page" id="brand-voice">
+        <h1 class="page-title">Brand Voice</h1>
+
+        <h2 style="font-size: 18px; font-weight: 600; margin: 24px 0 16px; color: var(--text-dark);">Save your voice</h2>
+
+        <div class="form-group">
+          <label class="form-label">Discord User ID</label>
+          <input type="text" id="bv-user-id-save" class="form-input" placeholder="Your Discord user ID...">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Voice Description</label>
+          <textarea id="bv-description" class="form-textarea" placeholder="Describe your brand voice, tone, and style..."></textarea>
+        </div>
+
+        <button class="button button-primary" id="bv-save" style="width: auto;">
+          <i class="ti ti-microphone"></i> Save voice
+        </button>
+
+        <div id="bv-save-results">
+          <div id="bv-save-message" class="success-message" style="display: none;"></div>
+        </div>
+
+        <hr style="margin: 32px 0; border: none; border-top: 1px solid #ddd;">
+
+        <h2 style="font-size: 18px; font-weight: 600; margin: 24px 0 16px; color: var(--text-dark);">View your voice</h2>
+
+        <div class="form-group">
+          <label class="form-label">Discord User ID</label>
+          <input type="text" id="bv-user-id-load" class="form-input" placeholder="Your Discord user ID...">
+        </div>
+
+        <button class="button button-primary" id="bv-load" style="width: auto;">
+          <i class="ti ti-microphone"></i> Load voice
+        </button>
+
+        <div id="bv-load-results" style="display: none;">
+          <div class="bento-grid" style="margin-top: 16px;">
+            <div class="card" style="grid-column: span 3;">
+              <span class="card-title">Your Voice</span>
+              <div id="bv-voice" class="card-content">—</div>
+            </div>
+          </div>
+          <div id="bv-load-error" class="error-message" style="display: none;"></div>
+        </div>
+
+        <div id="bv-loading" style="display: none;">
+          <div class="loading">
+            <div class="spinner"></div>
+            <span>Loading voice...</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAGE: Chat -->
+      <div class="page" id="chat">
+        <h1 class="page-title">Chat</h1>
+
+        <div class="chat-window">
+          <div class="chat-messages" id="chat-messages"></div>
+          <div class="chat-input-area">
+            <input type="text" id="chat-input" class="chat-input" placeholder="Type your message...">
+            <button class="button button-primary" id="chat-send" style="padding: 10px 14px;">
+              <i class="ti ti-send"></i>
+            </button>
+          </div>
+        </div>
       </div>
     </main>
   </div>
 
   <script>
-    // Global state
-    const appState = {
+    const state = {
       selectedPlatform: {
         'all-in-one': 'youtube',
         'write-post': 'youtube',
@@ -1272,7 +1482,7 @@
       chatMessages: [],
     };
 
-    // ===== NAV & PAGE SWITCHING =====
+    // Navigation
     document.querySelectorAll('.nav-item').forEach(item => {
       item.addEventListener('click', () => {
         const pageName = item.dataset.page;
@@ -1283,89 +1493,77 @@
     function switchPage(pageName) {
       document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
       document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-
       document.querySelector(`[data-page="${pageName}"]`).classList.add('active');
       document.getElementById(pageName).classList.add('active');
     }
 
-    // ===== PLATFORM SELECTION =====
-    function setupPlatformSelector(pageId, storageKey) {
+    // Platform selection
+    function setupPlatforms(pageId, stateKey) {
       const container = document.getElementById(`${pageId}-platforms`);
       if (!container) return;
-
       container.querySelectorAll('.platform-pill').forEach(pill => {
         pill.addEventListener('click', () => {
           container.querySelectorAll('.platform-pill').forEach(p => p.classList.remove('active'));
           pill.classList.add('active');
-          appState.selectedPlatform[storageKey] = pill.dataset.platform;
+          state.selectedPlatform[stateKey] = pill.dataset.platform;
         });
       });
     }
 
-    setupPlatformSelector('aio', 'all-in-one');
-    setupPlatformSelector('wp', 'write-post');
-    setupPlatformSelector('cap', 'caption');
-    setupPlatformSelector('ht', 'hashtags');
+    setupPlatforms('aio', 'all-in-one');
+    setupPlatforms('wp', 'write-post');
+    setupPlatforms('cap', 'caption');
+    setupPlatforms('ht', 'hashtags');
 
-    // ===== COPY TO CLIPBOARD =====
-    function setupCopyButton(buttonId, textElementId) {
-      const btn = document.getElementById(buttonId);
-      const textEl = document.getElementById(textElementId);
+    // Copy to clipboard
+    function setupCopy(btnId, textId) {
+      const btn = document.getElementById(btnId);
+      const text = document.getElementById(textId);
       if (!btn) return;
-
       btn.addEventListener('click', async () => {
-        const text = textEl.textContent;
         try {
-          await navigator.clipboard.writeText(text);
-          const originalHTML = btn.innerHTML;
+          await navigator.clipboard.writeText(text.textContent);
+          const orig = btn.innerHTML;
           btn.innerHTML = '<i class="ti ti-check"></i>';
-          setTimeout(() => {
-            btn.innerHTML = originalHTML;
-          }, 2000);
-        } catch (err) {
-          alert('Failed to copy: ' + err);
+          setTimeout(() => btn.innerHTML = orig, 2000);
+        } catch (e) {
+          alert('Copy failed');
         }
       });
     }
 
-    // ===== API HELPERS =====
-    async function apiCall(endpoint, body) {
+    // API helper
+    async function api(endpoint, body) {
       try {
-        const response = await fetch(endpoint, {
+        const res = await fetch(endpoint, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(body),
         });
-        const data = await response.json();
-        return data;
-      } catch (error) {
-        return { error: 'Network error: ' + error.message };
+        return await res.json();
+      } catch (e) {
+        return { error: e.message };
       }
     }
 
-    function showError(errorId, message) {
-      const errorEl = document.getElementById(errorId);
-      if (errorEl) {
-        errorEl.textContent = message;
-        errorEl.style.display = 'block';
+    function showError(id, msg) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.textContent = msg;
+        el.style.display = 'block';
       }
     }
 
-    // ===== PAGE 1: ALL-IN-ONE =====
+    // Page: All-in-one
     document.getElementById('aio-generate').addEventListener('click', async () => {
       const topic = document.getElementById('aio-topic').value.trim();
-      if (!topic) {
-        alert('Please enter a topic');
-        return;
-      }
+      if (!topic) { alert('Enter topic'); return; }
 
-      const platform = appState.selectedPlatform['all-in-one'];
       document.getElementById('aio-loading').style.display = 'block';
       document.getElementById('aio-results').style.display = 'none';
       document.getElementById('aio-error').style.display = 'none';
 
-      const data = await apiCall('/api/create', { platform, topic });
-
+      const data = await api('/api/create', { platform: state.selectedPlatform['all-in-one'], topic });
       document.getElementById('aio-loading').style.display = 'none';
 
       if (data.error) {
@@ -1375,62 +1573,37 @@
         document.getElementById('aio-post').textContent = data.post || '—';
         document.getElementById('aio-hashtags').textContent = data.hashtags || '—';
 
-        // Parse virality
         const virality = data.virality || '';
-        const percentMatch = virality.match(/(\d+)\s*\/\s*100/);
-        const percentage = percentMatch ? percentMatch[1] + '/100' : '—';
-        document.getElementById('aio-virality-number').textContent = percentage;
+        const match = virality.match(/(\d+)\s*\/\s*100/);
+        document.getElementById('aio-virality-number').textContent = match ? match[1] + '/100' : '—';
 
-        // Parse signals
         const signals = [];
-        const hookMatch = virality.match(/Hook Strength:\s*(\d+\/\d+)/i);
-        if (hookMatch) {
-          signals.push({ label: 'Hook Strength: ' + hookMatch[1], dot: 'cyan' });
-        }
-        const reachMatch = virality.match(/Estimated Reach:\s*([^,.\n]+)/i);
-        if (reachMatch) {
-          signals.push({ label: 'Est. Reach: ' + reachMatch[1].trim(), dot: 'cyan' });
-        }
-        const timeMatch = virality.match(/Best Time to Post:\s*([^\n]+)/i);
-        if (timeMatch) {
-          signals.push({ label: 'Best: ' + timeMatch[1].trim(), dot: 'coral' });
-        }
+        if (virality.match(/Hook Strength:\s*(\d+\/\d+)/i)) signals.push({ label: 'Hook: ' + RegExp.$1, dot: 'cyan' });
+        if (virality.match(/Estimated Reach:\s*([^,.\n]+)/i)) signals.push({ label: 'Reach: ' + RegExp.$1.trim(), dot: 'cyan' });
+        if (virality.match(/Best Time to Post:\s*([^\n]+)/i)) signals.push({ label: 'Best: ' + RegExp.$1.trim(), dot: 'coral' });
 
         const signalsEl = document.getElementById('aio-signals');
-        signalsEl.innerHTML = '';
-        signals.forEach(sig => {
-          const row = document.createElement('div');
-          row.className = 'signal-row';
-          row.innerHTML = `<div class="signal-dot ${sig.dot}"></div><span>${sig.label}</span>`;
-          signalsEl.appendChild(row);
-        });
+        signalsEl.innerHTML = signals.map(s => `<div class="signal"><div class="signal-dot ${s.dot}"></div><span>${s.label}</span></div>`).join('');
 
-        // Show copy buttons if content exists
         if (data.post) document.getElementById('aio-copy-post').style.display = 'inline-flex';
         if (data.hashtags) document.getElementById('aio-copy-hashtags').style.display = 'inline-flex';
-
         document.getElementById('aio-results').style.display = 'block';
 
-        setupCopyButton('aio-copy-post', 'aio-post');
-        setupCopyButton('aio-copy-hashtags', 'aio-hashtags');
+        setupCopy('aio-copy-post', 'aio-post');
+        setupCopy('aio-copy-hashtags', 'aio-hashtags');
       }
     });
 
-    // ===== PAGE 2: WRITE POST =====
+    // Page: Write post
     document.getElementById('wp-generate').addEventListener('click', async () => {
       const topic = document.getElementById('wp-topic').value.trim();
-      if (!topic) {
-        alert('Please enter a topic');
-        return;
-      }
+      if (!topic) { alert('Enter topic'); return; }
 
-      const platform = appState.selectedPlatform['write-post'];
       document.getElementById('wp-loading').style.display = 'block';
       document.getElementById('wp-results').style.display = 'none';
       document.getElementById('wp-error').style.display = 'none';
 
-      const data = await apiCall('/api/post', { platform, topic });
-
+      const data = await api('/api/post', { platform: state.selectedPlatform['write-post'], topic });
       document.getElementById('wp-loading').style.display = 'none';
 
       if (data.error) {
@@ -1439,24 +1612,20 @@
         document.getElementById('wp-post').textContent = data.result || '—';
         if (data.result) document.getElementById('wp-copy-post').style.display = 'inline-flex';
         document.getElementById('wp-results').style.display = 'block';
-        setupCopyButton('wp-copy-post', 'wp-post');
+        setupCopy('wp-copy-post', 'wp-post');
       }
     });
 
-    // ===== PAGE 3: HOOK GENERATOR =====
+    // Page: Hook generator
     document.getElementById('hg-generate').addEventListener('click', async () => {
       const topic = document.getElementById('hg-topic').value.trim();
-      if (!topic) {
-        alert('Please enter a topic');
-        return;
-      }
+      if (!topic) { alert('Enter topic'); return; }
 
       document.getElementById('hg-loading').style.display = 'block';
       document.getElementById('hg-results').style.display = 'none';
       document.getElementById('hg-error').style.display = 'none';
 
-      const data = await apiCall('/api/hook', { topic });
-
+      const data = await api('/api/hook', { topic });
       document.getElementById('hg-loading').style.display = 'none';
 
       if (data.error) {
@@ -1465,24 +1634,20 @@
         document.getElementById('hg-hooks').textContent = data.result || '—';
         if (data.result) document.getElementById('hg-copy-hooks').style.display = 'inline-flex';
         document.getElementById('hg-results').style.display = 'block';
-        setupCopyButton('hg-copy-hooks', 'hg-hooks');
+        setupCopy('hg-copy-hooks', 'hg-hooks');
       }
     });
 
-    // ===== PAGE 4: SCRIPT WRITER =====
+    // Page: Script writer
     document.getElementById('sw-generate').addEventListener('click', async () => {
       const topic = document.getElementById('sw-topic').value.trim();
-      if (!topic) {
-        alert('Please enter a topic');
-        return;
-      }
+      if (!topic) { alert('Enter topic'); return; }
 
       document.getElementById('sw-loading').style.display = 'block';
       document.getElementById('sw-results').style.display = 'none';
       document.getElementById('sw-error').style.display = 'none';
 
-      const data = await apiCall('/api/script', { topic });
-
+      const data = await api('/api/script', { topic });
       document.getElementById('sw-loading').style.display = 'none';
 
       if (data.error) {
@@ -1491,25 +1656,20 @@
         document.getElementById('sw-script').textContent = data.result || '—';
         if (data.result) document.getElementById('sw-copy-script').style.display = 'inline-flex';
         document.getElementById('sw-results').style.display = 'block';
-        setupCopyButton('sw-copy-script', 'sw-script');
+        setupCopy('sw-copy-script', 'sw-script');
       }
     });
 
-    // ===== PAGE 5: CAPTION =====
+    // Page: Caption
     document.getElementById('cap-generate').addEventListener('click', async () => {
       const description = document.getElementById('cap-description').value.trim();
-      if (!description) {
-        alert('Please describe your photo or video');
-        return;
-      }
+      if (!description) { alert('Describe your media'); return; }
 
-      const platform = appState.selectedPlatform['caption'];
       document.getElementById('cap-loading').style.display = 'block';
       document.getElementById('cap-results').style.display = 'none';
       document.getElementById('cap-error').style.display = 'none';
 
-      const data = await apiCall('/api/caption', { platform, description });
-
+      const data = await api('/api/caption', { platform: state.selectedPlatform['caption'], description });
       document.getElementById('cap-loading').style.display = 'none';
 
       if (data.error) {
@@ -1518,24 +1678,20 @@
         document.getElementById('cap-caption').textContent = data.result || '—';
         if (data.result) document.getElementById('cap-copy-caption').style.display = 'inline-flex';
         document.getElementById('cap-results').style.display = 'block';
-        setupCopyButton('cap-copy-caption', 'cap-caption');
+        setupCopy('cap-copy-caption', 'cap-caption');
       }
     });
 
-    // ===== PAGE 6: TREND SCORE =====
+    // Page: Trend score
     document.getElementById('ts-generate').addEventListener('click', async () => {
       const topic = document.getElementById('ts-topic').value.trim();
-      if (!topic) {
-        alert('Please enter a topic');
-        return;
-      }
+      if (!topic) { alert('Enter topic'); return; }
 
       document.getElementById('ts-loading').style.display = 'block';
       document.getElementById('ts-results').style.display = 'none';
       document.getElementById('ts-error').style.display = 'none';
 
-      const data = await apiCall('/api/trendscore', { topic });
-
+      const data = await api('/api/trendscore', { topic });
       document.getElementById('ts-loading').style.display = 'none';
 
       if (data.error) {
@@ -1546,21 +1702,16 @@
       }
     });
 
-    // ===== PAGE 7: HASHTAGS =====
+    // Page: Hashtags
     document.getElementById('ht-generate').addEventListener('click', async () => {
       const topic = document.getElementById('ht-topic').value.trim();
-      if (!topic) {
-        alert('Please enter a topic');
-        return;
-      }
+      if (!topic) { alert('Enter topic'); return; }
 
-      const platform = appState.selectedPlatform['hashtags'];
       document.getElementById('ht-loading').style.display = 'block';
       document.getElementById('ht-results').style.display = 'none';
       document.getElementById('ht-error').style.display = 'none';
 
-      const data = await apiCall('/api/hashtags', { platform, topic });
-
+      const data = await api('/api/hashtags', { platform: state.selectedPlatform['hashtags'], topic });
       document.getElementById('ht-loading').style.display = 'none';
 
       if (data.error) {
@@ -1569,50 +1720,32 @@
         document.getElementById('ht-hashtags').textContent = data.result || '—';
         if (data.result) document.getElementById('ht-copy-hashtags').style.display = 'inline-flex';
         document.getElementById('ht-results').style.display = 'block';
-        setupCopyButton('ht-copy-hashtags', 'ht-hashtags');
+        setupCopy('ht-copy-hashtags', 'ht-hashtags');
       }
     });
 
-    // ===== PAGE 8: BRAND VOICE =====
+    // Page: Brand voice
     document.getElementById('bv-save').addEventListener('click', async () => {
       const userId = document.getElementById('bv-user-id-save').value.trim();
       const description = document.getElementById('bv-description').value.trim();
-      if (!userId || !description) {
-        alert('Please fill in all fields');
-        return;
-      }
+      if (!userId || !description) { alert('Fill all fields'); return; }
 
-      const data = await apiCall('/api/setvoice', { user_id: userId, description });
-
-      const msgEl = document.getElementById('bv-save-message');
-      document.getElementById('bv-save-results').style.display = 'block';
-      if (data.error) {
-        msgEl.textContent = data.error;
-        msgEl.style.backgroundColor = '#ffe6e6';
-        msgEl.style.color = '#c33';
-        msgEl.style.borderColor = '#ffcccc';
-      } else {
-        msgEl.textContent = data.result || 'Voice saved successfully';
-        msgEl.style.backgroundColor = '#e6f7f0';
-        msgEl.style.color = '#0e5c56';
-        msgEl.style.borderColor = '#99dfd6';
-      }
-      msgEl.style.display = 'block';
+      const data = await api('/api/setvoice', { user_id: userId, description });
+      const msg = document.getElementById('bv-save-message');
+      msg.textContent = data.error ? data.error : (data.result || 'Saved');
+      msg.className = data.error ? 'error-message' : 'success-message';
+      msg.style.display = 'block';
     });
 
     document.getElementById('bv-load').addEventListener('click', async () => {
       const userId = document.getElementById('bv-user-id-load').value.trim();
-      if (!userId) {
-        alert('Please enter your Discord User ID');
-        return;
-      }
+      if (!userId) { alert('Enter user ID'); return; }
 
       document.getElementById('bv-loading').style.display = 'block';
       document.getElementById('bv-load-results').style.display = 'none';
       document.getElementById('bv-load-error').style.display = 'none';
 
-      const data = await apiCall('/api/getvoice', { user_id: userId });
-
+      const data = await api('/api/getvoice', { user_id: userId });
       document.getElementById('bv-loading').style.display = 'none';
 
       if (data.error) {
@@ -1623,76 +1756,55 @@
       }
     });
 
-    // ===== PAGE 9: CHAT =====
+    // Page: Chat
     const chatInput = document.getElementById('chat-input');
     const chatSend = document.getElementById('chat-send');
     const chatMessages = document.getElementById('chat-messages');
 
-    function appendMessage(role, content) {
-      const msgDiv = document.createElement('div');
-      msgDiv.className = `chat-message ${role === 'user' ? 'user' : 'assistant'}`;
-
+    function addMessage(role, text) {
+      const div = document.createElement('div');
+      div.className = `message ${role}`;
       if (role === 'assistant') {
-        msgDiv.innerHTML = `
-          <div class="chat-avatar">A</div>
-          <div class="chat-message-content">${content}</div>
-        `;
+        div.innerHTML = `<div class="message-avatar">A</div><div class="message-bubble">${text}</div>`;
       } else {
-        msgDiv.innerHTML = `<div class="chat-message-content">${content}</div>`;
+        div.innerHTML = `<div class="message-bubble">${text}</div>`;
       }
-
-      chatMessages.appendChild(msgDiv);
+      chatMessages.appendChild(div);
       chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 
-    function showTypingIndicator() {
-      const msgDiv = document.createElement('div');
-      msgDiv.className = 'chat-message assistant';
-      msgDiv.id = 'typing-indicator';
-      msgDiv.innerHTML = `
-        <div class="chat-avatar">A</div>
-        <div class="chat-typing">
-          <div class="typing-dot"></div>
-          <div class="typing-dot"></div>
-          <div class="typing-dot"></div>
-        </div>
-      `;
-      chatMessages.appendChild(msgDiv);
+    function showTyping() {
+      const div = document.createElement('div');
+      div.id = 'typing';
+      div.className = 'message assistant';
+      div.innerHTML = `<div class="message-avatar">A</div><div class="typing"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>`;
+      chatMessages.appendChild(div);
       chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 
-    function removeTypingIndicator() {
-      const typing = document.getElementById('typing-indicator');
-      if (typing) typing.remove();
-    }
+    async function sendMsg() {
+      const msg = chatInput.value.trim();
+      if (!msg) return;
 
-    async function sendMessage() {
-      const message = chatInput.value.trim();
-      if (!message) return;
-
-      appState.chatMessages.push({ role: 'user', content: message });
-      appendMessage('user', message);
+      state.chatMessages.push({ role: 'user', content: msg });
+      addMessage('user', msg);
       chatInput.value = '';
 
-      showTypingIndicator();
-
-      const data = await apiCall('/api/chat', { messages: appState.chatMessages });
-
-      removeTypingIndicator();
+      showTyping();
+      const data = await api('/api/chat', { messages: state.chatMessages });
+      document.getElementById('typing')?.remove();
 
       if (data.error) {
-        appendMessage('assistant', 'Error: ' + data.error);
+        addMessage('assistant', 'Error: ' + data.error);
       } else {
-        const assistantMessage = data.result || 'No response';
-        appState.chatMessages.push({ role: 'assistant', content: assistantMessage });
-        appendMessage('assistant', assistantMessage);
+        const reply = data.result || 'No response';
+        state.chatMessages.push({ role: 'assistant', content: reply });
+        addMessage('assistant', reply);
       }
     }
 
-    chatSend.addEventListener('click', sendMessage);
-    chatInput.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') sendMessage();
-    });
+    chatSend.addEventListener('click', sendMsg);
+    chatInput.addEventListener('keypress', e => e.key === 'Enter' && sendMsg());
   </script>
 </body>
 </html>
